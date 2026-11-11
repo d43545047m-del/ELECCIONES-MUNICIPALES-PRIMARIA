@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const URL_SCRIPT_GOOGLE = 'https://script.google.com/macros/s/AKfyebyXnxcX_366kgc30jMoUprAmkY0gyXgxuP38VknG57Nc4RS_05iqSlRq7khqS3BTMLeyA/exec';
+    // URL de la Versión 3 de Google Apps Script
+    const URL_SCRIPT_GOOGLE = 'https://script.google.com/macros/s/AKfycbxW6oQqf2pRtpWYd8UtjPBpRx50IhHQ_EtBGxORDXfZaCsrhqmmXsCO4Qvrhhqf52kA5w/exec';
 
+    // Inicialización del carrusel por vista completa
     const swiper = new Swiper('.swiper-container', {
         slidesPerView: 1, 
         spaceBetween: 30,
@@ -71,11 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
 
-                    // Estructura los datos para el envío
+                    // Construcción del paquete de datos
                     const formData = new FormData();
                     formData.append('grado', grado);
                     formData.append('voto', voto);
 
+                    // Envío a Google Apps Script
                     fetch(URL_SCRIPT_GOOGLE, {
                         method: 'POST',
                         mode: 'no-cors',
