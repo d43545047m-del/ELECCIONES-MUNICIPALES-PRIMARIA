@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // AL USAR slidesPerView: 1, SWIPER CAMBIA DE PÁGINA ENTERA Y NO REPITE NINGUNA TARJETA
+    // Inicialización del carrusel por páginas completas
     const swiper = new Swiper('.swiper-container', {
         slidesPerView: 1, 
         spaceBetween: 30,
@@ -22,4 +22,60 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Validación y confirmación del formulario al votar
+    const formulario = document.getElementById('formulario-voto');
+    if (formulario) {
+        formulario.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const grado = document.getElementById('grado').value;
+            const voto = inputVoto ? inputVoto.value : '';
+
+            if (!grado) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Grado requerido',
+                    text: 'Por favor, selecciona tu grado antes de continuar.',
+                    confirmButtonColor: '#1e3c72'
+                });
+                return;
+            }
+
+            if (!voto) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Lista no seleccionada',
+                    text: 'Por favor, selecciona una lista para confirmar tu voto.',
+                    confirmButtonColor: '#1e3c72'
+                });
+                return;
+            }
+
+            Swal.fire({
+                title: '¿Confirmar voto?',
+                html: `<strong>Grado:</strong> ${grado}<br><strong>Voto:</strong> ${voto}`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#1e3c72',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, emitir voto',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Voto registrado!',
+                        text: 'Muchas gracias por participar en la elección.',
+                        confirmButtonColor: '#1e3c72'
+                    }).then(() => {
+                        formulario.reset();
+                        cardItems.forEach(c => c.classList.remove('selected'));
+                        if (inputVoto) inputVoto.value = '';
+                        swiper.slideTo(0);
+                    });
+                }
+            });
+        });
+    }
 });
