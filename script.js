@@ -1,28 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Inicialización del carrusel por páginas completas (1 vista por grupo)
+    // Inicializar Swiper de modo que NUNCA repita tarjetas
     const swiper = new Swiper('.swiper-container', {
-        slidesPerView: 1,
-        spaceBetween: 30,
+        slidesPerView: 1, // Considera toda la vista de 3 tarjetas como 1 sola página
+        spaceBetween: 20,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         }
     });
 
-    // Lógica para seleccionar las tarjetas dentro de la cuadrícula
-    const cardItems = document.querySelectorAll('.card-item');
+    // Lógica para seleccionar las tarjetas al hacer clic
+    const cardItems = document.querySelectorAll('.card-item, .swiper-slide');
     const inputVoto = document.getElementById('voto-seleccionado');
 
     cardItems.forEach(card => {
         card.addEventListener('click', () => {
-            // Desmarca cualquier tarjeta seleccionada previamente
             cardItems.forEach(c => c.classList.remove('selected'));
-            
-            // Marca la tarjeta cliqueada
             card.classList.add('selected');
             
-            // Asigna el voto al campo oculto del formulario
-            inputVoto.value = card.getAttribute('data-voto');
+            const votoValue = card.getAttribute('data-voto');
+            if (votoValue && inputVoto) {
+                inputVoto.value = votoValue;
+            }
         });
     });
 });
