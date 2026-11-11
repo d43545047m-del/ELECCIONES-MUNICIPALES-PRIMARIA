@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (formulario) {
         formulario.addEventListener('submit', function (e) {
             e.preventDefault();
-            e.stopPropagation();
 
             const grado = document.getElementById('grado').value;
             const voto = inputVoto ? inputVoto.value : '';
@@ -72,12 +71,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
 
-                    // Preparar datos compatibles con Apps Script
+                    // Estructura los datos para el envío
                     const formData = new FormData();
                     formData.append('grado', grado);
                     formData.append('voto', voto);
 
-                    // Envío hacia Google Apps Script
                     fetch(URL_SCRIPT_GOOGLE, {
                         method: 'POST',
                         mode: 'no-cors',
@@ -90,14 +88,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             text: 'Muchas gracias por participar en la elección.',
                             confirmButtonColor: '#1e3c72'
                         }).then(() => {
-                            // Limpiar selección y formulario sin recargar la URL
                             formulario.reset();
                             cardItems.forEach(c => c.classList.remove('selected'));
                             if (inputVoto) inputVoto.value = '';
                             swiper.slideTo(0);
-                            
-                            // Limpiar parámetros de la URL si aparecieron
-                            window.history.replaceState({}, document.title, window.location.pathname);
                         });
                     })
                     .catch(error => {
