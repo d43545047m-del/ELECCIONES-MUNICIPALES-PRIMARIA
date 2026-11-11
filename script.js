@@ -1,40 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Inicialización del carrusel por páginas completas
     const swiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        spaceBetween: 20,
-        // Evita que Swiper rearrastre la diapositiva previa para llenar huecos
-        centerInsufficientSlides: false,
-        watchOverflow: true,
-        
+        slidesPerView: 1,
+        spaceBetween: 30,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
-        },
-
-        breakpoints: {
-            0: {
-                slidesPerView: 1,
-                slidesPerGroup: 1,
-                spaceBetween: 10
-            },
-            768: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                spaceBetween: 20
-            }
         }
     });
 
-    // Selección de listas al hacer clic
-    const slides = document.querySelectorAll('.swiper-slide');
+    // Lógica para seleccionar las tarjetas dentro de las cuadrículas
+    const cardItems = document.querySelectorAll('.card-item');
     const inputVoto = document.getElementById('voto-seleccionado');
 
-    slides.forEach(slide => {
-        slide.addEventListener('click', () => {
-            slides.forEach(s => s.classList.remove('selected'));
-            slide.classList.add('selected');
-            inputVoto.value = slide.getAttribute('data-voto');
+    cardItems.forEach(card => {
+        card.addEventListener('click', () => {
+            // Desmarca cualquier tarjeta previamente seleccionada
+            cardItems.forEach(c => c.classList.remove('selected'));
+            
+            // Marca la tarjeta actual
+            card.classList.add('selected');
+            
+            // Asigna el voto al campo oculto
+            inputVoto.value = card.getAttribute('data-voto');
         });
     });
 });
