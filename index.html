@@ -9,62 +9,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
     
     <style>
-       /* Corrección de posición de los puntos de paginación */
-.swiper-pagination {
-    position: relative !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px !important;
-    transform: none !important;
-}
+        /* Corrección de posición de los puntos de paginación */
+        .swiper-pagination {
+            position: relative !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            margin-top: 20px !important;
+            margin-bottom: 20px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 10px !important;
+            transform: none !important;
+        }
 
-.swiper-pagination-bullet {
-    width: 12px !important;
-    height: 12px !important;
-    background: #00AAEE !important;
-    opacity: 0.4;
-    margin: 0 !important;
-}
+        .swiper-pagination-bullet {
+            width: 12px !important;
+            height: 12px !important;
+            background: #00AAEE !important;
+            opacity: 0.4;
+            margin: 0 !important;
+        }
 
-.swiper-pagination-bullet-active {
-    opacity: 1 !important;
-    background: #1e3c72 !important;
-    width: 28px !important;
-    border-radius: 6px !important;
-}
-        /* Corregir ubicación del carrusel y los puntos de paginación */
-.swiper-container {
-    padding-bottom: 50px !important; /* Abre espacio libre abajo de las tarjetas */
-    position: relative !important;
-}
+        .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+            background: #1e3c72 !important;
+            width: 28px !important;
+            border-radius: 6px !important;
+        }
+        
+        .swiper-container { 
+            padding-bottom: 50px !important;
+            position: relative !important;
+        }
 
-.swiper-pagination {
-    bottom: 10px !important; /* Desplaza los puntos azules abajo, fuera de la imagen */
-    top: auto !important;
-    left: 0 !important;
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    gap: 8px !important;
-}
-
-.swiper-pagination-bullet {
-    width: 12px !important;
-    height: 12px !important;
-    opacity: 0.5;
-}
-
-.swiper-pagination-bullet-active {
-    opacity: 1;
-    background: #1e3c72 !important; /* Color azul para el punto activo */
-}
         :root {
             --celeste: #6EC1E4;
             --azul-oscuro: #1e3c72;
@@ -160,10 +140,6 @@
             font-weight: 700;
             text-transform: uppercase; 
             letter-spacing: 0.8px;
-        }
-        .swiper-container { 
-            width: 100%; 
-            padding-bottom: var(--spacing-md); 
         }
         .swiper-slide { 
             background: var(--blanco);
@@ -290,7 +266,7 @@
                         </div>
                         <div class="list-info">
                             <p class="list-title">Lista 2</p>
-                            <small class="list-slogan">Triunfadores en accióna</small>
+                            <small class="list-slogan">Triunfadores en acción</small>
                         </div>
                     </div>
                     
@@ -303,6 +279,8 @@
                             <small class="list-slogan">Manos unidas, huellas del futuro</small>
                         </div>
                     </div>
+
+                    <!-- CORREGIDO: Lista4.png -->
                     <div class="swiper-slide" data-voto="Lista 4: Estrellas unidas por el cambio">
                         <div class="list-image-container">
                             <img src="Lista4.png" alt="Lista 4">
@@ -312,7 +290,9 @@
                             <small class="list-slogan">Estrellas unidas por el cambio</small>
                         </div>
                     </div>
-                     <div class="swiper-slide" data-voto="Lista 5: Golden M - Voces brillantes">
+
+                    <!-- CORREGIDO: Lista5.png -->
+                    <div class="swiper-slide" data-voto="Lista 5: Golden M - Voces brillantes">
                         <div class="list-image-container">
                             <img src="Lista5.png" alt="Lista 5">
                         </div>
@@ -321,6 +301,7 @@
                             <small class="list-slogan">Golden M - Voces brillantes</small>
                         </div>
                     </div>
+
                 </div>
             </div>
             
