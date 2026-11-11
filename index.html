@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
     
     <style>
-        /* Corrección de posición de los puntos de paginación */
         .swiper-pagination {
             position: relative !important;
             bottom: 0 !important;
@@ -43,6 +42,7 @@
         .swiper-container { 
             padding-bottom: 50px !important;
             position: relative !important;
+            overflow: hidden !important; /* Mantiene las 3 tarjetas dentro del marco */
         }
 
         :root {
@@ -280,7 +280,6 @@
                         </div>
                     </div>
 
-                    <!-- CORREGIDO: Lista4.png -->
                     <div class="swiper-slide" data-voto="Lista 4: Estrellas unidas por el cambio">
                         <div class="list-image-container">
                             <img src="Lista4.png" alt="Lista 4">
@@ -291,7 +290,6 @@
                         </div>
                     </div>
 
-                    <!-- CORREGIDO: Lista5.png -->
                     <div class="swiper-slide" data-voto="Lista 5: Golden M - Voces brillantes">
                         <div class="list-image-container">
                             <img src="Lista5.png" alt="Lista 5">
