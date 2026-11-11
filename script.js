@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
-        slidesPerGroup: 3, // Salta de 3 en 3 elementos
+        slidesPerGroup: 3,          // Avanza estrictamente de 3 en 3
+        slidesPerGroupSkip: 0,      // Evita que el primer elemento ignore el agrupamiento
         spaceBetween: 20,
+        
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
+
         breakpoints: {
             0: {
                 slidesPerView: 1,
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Lógica para seleccionar la lista al hacer clic
+    // Lógica para seleccionar una sola lista al hacer clic
     const slides = document.querySelectorAll('.swiper-slide');
     const inputVoto = document.getElementById('voto-seleccionado');
 
