@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // URL desplegada de Google Apps Script
     const URL_SCRIPT_GOOGLE = 'https://script.google.com/macros/s/AKfyebyXnxcX_366kgc30jMoUprAmkY0gyXgxuP38VknG57Nc4RS_05iqSlRq7khqS3BTMLeyA/exec';
 
-    // Inicialización del carrusel por página fija (Evita duplicar listas)
     const swiper = new Swiper('.swiper-container', {
         slidesPerView: 1, 
         spaceBetween: 30,
@@ -29,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (formulario) {
         formulario.addEventListener('submit', function (e) {
             e.preventDefault();
+            e.stopPropagation();
 
             const grado = document.getElementById('grado').value;
             const voto = inputVoto ? inputVoto.value : '';
@@ -73,17 +72,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
 
-                    // Envío de datos a Google Sheets
+                    // Preparar datos compatibles con Apps Script
+                    const formData = new FormData();
+                    formData.append('grado', grado);
+                    formData.append('voto', voto);
+
+                    // Envío hacia Google Apps Script
                     fetch(URL_SCRIPT_GOOGLE, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            grado: grado,
-                            voto: voto
-                        })
+                        body: formData
                     })
                     .then(() => {
                         Swal.fire({
@@ -92,10 +90,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             text: 'Muchas gracias por participar en la elección.',
                             confirmButtonColor: '#1e3c72'
                         }).then(() => {
+                            // Limpiar selección y formulario sin recargar la URL
                             formulario.reset();
                             cardItems.forEach(c => c.classList.remove('selected'));
                             if (inputVoto) inputVoto.value = '';
                             swiper.slideTo(0);
+                            
+                            // Limpiar parámetros de la URL si aparecieron
+                            window.history.replaceState({}, document.title, window.location.pathname);
                         });
                     })
                     .catch(error => {
